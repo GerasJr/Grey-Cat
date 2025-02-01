@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9092813219164946090}
-  - component: {fileID: 4274309385704403348}
   - component: {fileID: 865743632045517371}
   - component: {fileID: 2769108901708076887}
+  - component: {fileID: 4274309385704403348}
   m_Layer: 8
   m_Name: WeaponItem
   m_TagString: Untagged
@@ -34,21 +34,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4274309385704403348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2814093899494358350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff45b37cca5ca446890dae50851f853, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponInfo:
-  - {fileID: 11400000, guid: 53a4e351f29226940a239923d77ded98, type: 2}
-  - {fileID: 11400000, guid: 4ae1fa5f3a44cae4f8c01ff39d1ca433, type: 2}
 --- !u!61 &865743632045517371
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150,3 +135,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4274309385704403348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2814093899494358350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff45b37cca5ca446890dae50851f853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 2769108901708076887}

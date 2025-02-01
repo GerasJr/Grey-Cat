@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4992411771776637042}
   - component: {fileID: -1058072856161197875}
   - component: {fileID: -8727169688034336482}
+  - component: {fileID: -7347448860398751996}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -59,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -186,5 +187,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bf800f2b3104fc4995f635f7b1d2c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bloodFX: {fileID: 1033872469158012526, guid: 5ab169e3bd13e614d886bc813c8575ef, type: 3}
+  _particleBlood: {fileID: 6583696377946013457, guid: d947918ce88ee784a87b3693a6a76b16, type: 3}
+  _hitedEnemies: []
+--- !u!114 &-7347448860398751996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434697616732248576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6068338121ead438c5c7f0be6976f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

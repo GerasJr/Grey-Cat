@@ -7,13 +7,14 @@ public class ChunksUpdater : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private Chunk[] _chunks = new Chunk[3];
 
-    public static event OnSpawned SpawnedEvent;
-    public delegate void OnSpawned(Chunk chunk);
     private float _distanceToEndPoint;
     private float _distanceToSpawn = 25;
     private Vector3 _endPoint;
     private Queue<Chunk> spawnedChunks = new Queue<Chunk>();
-    private float _maxSpawnedChunks = 4;
+    private float _maxSpawnedChunks = 3;
+    
+    public static event OnSpawned SpawnedEvent;
+    public delegate void OnSpawned(Chunk chunk);
 
     private void Start()
     {

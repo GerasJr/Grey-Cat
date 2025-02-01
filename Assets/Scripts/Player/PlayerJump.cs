@@ -6,6 +6,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private float _jumpForce = 0f;
 
     public bool IsJump { get; private set; } = false;
+    private bool _isCollission = false;
     private SurfaceDetector _surfaceDetector;
     private float _currentTime, _totalTime;
     private float yPosition;
@@ -35,9 +36,26 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<Collider2D>(out Collider2D collider))
+        {
+            _isCollission = true;
+        }
+        else
+        {
+            _isCollission = false;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        _isCollission = false;
+    }
+
     public void Jump()
     {
-        if (_surfaceDetector.IsDetectGround())
+        if (_surfaceDetector.IsDetectGround() && _isCollission == true)
         {
             IsJump = true;
         }

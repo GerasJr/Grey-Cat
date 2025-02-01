@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db75c38c6aa5ad446a8179e785a540ec, type: 3}
+  m_Name: Weapon_Pistol
+  m_EditorClassIdentifier: 
+  _weaponName: Pistol
+  _id: 0
+  _sprite: {fileID: 191329510046028444, guid: 06a936543ce622d4bbb483b79468d979, type: 3}
+  _spriteInArms: {fileID: -6130198324936730829, guid: 06a936543ce622d4bbb483b79468d979, type: 3}
+  _armsPosition: {x: 0, y: 0}
+  _muzzlePosition: {x: 0.07, y: 0.025}
+  _damage: 50
+  _magazineAmount: 7
+  _rateOfFire: 0.2
+  _cost: 0
+  _isShotgun: 0
+  _isShootingThrough: 0

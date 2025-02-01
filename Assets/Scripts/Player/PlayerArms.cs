@@ -8,7 +8,10 @@ public class PlayerArms : MonoBehaviour
     private PlayerWeapon _currentWeapon;
     private PlayerMovement _playerMovement;
 
-    void Start()
+    public static event OnWeaponState UpdateStateEvent;
+    public delegate void OnWeaponState(bool isHaveWeapon);
+
+    private void Start()
     {
         SwipeDetection.TapEvent += Shoot;
         SwipeDetection.SwipeEvent += DropWeapon;
@@ -21,6 +24,7 @@ public class PlayerArms : MonoBehaviour
         {
             _currentWeapon = Instantiate(_playerWeapon, transform);
             _currentWeapon.SetNewWeapon(weaponItem.GetWeapon());
+            UpdateStateEvent.Invoke(true);
             Destroy(weaponItem.gameObject);
         }
     }
@@ -29,8 +33,11 @@ public class PlayerArms : MonoBehaviour
     {
         if (direction == Vector2.right && _currentWeapon != null)
         {
-            DropedWeapon dropedWeapon = Instantiate(_dropedWeapon, _currentWeapon.transform.position, _dropedWeapon.transform.rotation);
+            Vector2 startPosition = new Vector2(_currentWeapon.transform.position.x, _currentWeapon.transform.position.y + 0.3f);
+
+            DropedWeapon dropedWeapon = Instantiate(_dropedWeapon, startPosition, _dropedWeapon.transform.rotation);
             dropedWeapon.SetWeapon(_currentWeapon.GetInfo());
+            UpdateStateEvent.Invoke(false);
             Destroy(_currentWeapon.gameObject);
         }
     }
@@ -41,6 +48,18 @@ public class PlayerArms : MonoBehaviour
         {
             _currentWeapon = GetComponentInChildren<PlayerWeapon>();
             _currentWeapon.Shoot();
+        }
+    }
+
+    public bool IsHaveWeapon()
+    {
+        if(_currentWeapon == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 

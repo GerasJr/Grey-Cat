@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db75c38c6aa5ad446a8179e785a540ec, type: 3}
+  m_Name: AK
+  m_EditorClassIdentifier: 
+  _weaponName: AK -47
+  _id: 5
+  _sprite: {fileID: 6552126684205983197, guid: f07b842fdb318374cb694629f3e58f99, type: 3}
+  _spriteInArms: {fileID: -526267152738957839, guid: f07b842fdb318374cb694629f3e58f99, type: 3}
+  _armsPosition: {x: 0.05, y: 0}
+  _muzzlePosition: {x: 0.185, y: 0.025}
+  _damage: 50
+  _magazineAmount: 30
+  _rateOfFire: 0.15
+  _cost: 15000
+  _isShotgun: 0
+  _isShootingThrough: 0

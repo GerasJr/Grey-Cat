@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db75c38c6aa5ad446a8179e785a540ec, type: 3}
+  m_Name: Submachine_Gun
+  m_EditorClassIdentifier: 
+  _weaponName: Submachine Gun
+  _id: 1
+  _sprite: {fileID: -3973304189704426054, guid: 222a3ac799ca03c43b79c3f3eb3816d6, type: 3}
+  _spriteInArms: {fileID: -7767451325500421202, guid: 222a3ac799ca03c43b79c3f3eb3816d6, type: 3}
+  _armsPosition: {x: 0, y: 0}
+  _muzzlePosition: {x: 0.145, y: 0.02}
+  _damage: 35
+  _magazineAmount: 15
+  _rateOfFire: 0.1
+  _cost: 500
+  _isShotgun: 0
+  _isShootingThrough: 0

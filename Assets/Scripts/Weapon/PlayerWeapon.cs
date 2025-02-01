@@ -5,16 +5,20 @@ using UnityEngine.UI;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private Bullet _bullet;
+    [SerializeField] private ParticleSystem _particleShell;
     [SerializeField] private WeaponInfo _weaponInfo;
+    [SerializeField] private BloodFX _bloodFX;
+    [SerializeField] private ParticleBlood _particleBlood;
 
-    public static event OnAmmoUpdate UpdateEvent;
-    public delegate void OnAmmoUpdate(WeaponInfo weaponInfo, int currentAmmo);
     private Animator _animator;
     private Muzzle _muzzle;
     private SpriteRenderer _spriteRenderer;
     private Coroutine _rollBackJob;
     private int _currentAmmo = 0;
     private bool _isRollBack = false;
+
+    public static event OnAmmoUpdate UpdateEvent;
+    public delegate void OnAmmoUpdate(WeaponInfo weaponInfo, int currentAmmo);
 
     private void Awake()
     {
@@ -42,14 +46,22 @@ public class PlayerWeapon : MonoBehaviour
                 {
                     angle = angleRange / 2 - Random.Range(0, angleRange);
                     direction = new Vector2(Vector2.right.x, angle / 100);
-                    hit = Physics2D.Raycast(_muzzle.transform.position, direction, distance);
+
+                    int layerMask = 1;
+                    layerMask = ~(layerMask << gameObject.layer) & ~(layerMask << LayerMask.NameToLayer("Interact Item")) & ~(layerMask << LayerMask.NameToLayer("Physical Item"));
+
+                    hit = Physics2D.Raycast(_muzzle.transform.position, direction, distance, layerMask);
                     Debug.DrawLine(_muzzle.transform.position, (Vector2)_muzzle.transform.position + direction * distance, Color.green, 5);
 
                     try
                     {
-                        if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
+                        if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy) && enemy.IsDead == false)
                         {
                             enemy.GetDamage(_weaponInfo.damage / shells);
+                            Vector2 bloodPosition = new Vector2(2, 0);
+                            BloodFX bloodFX = Instantiate(_bloodFX, hit.point + bloodPosition, Quaternion.identity);
+                            Instantiate(_particleBlood, hit.point, Quaternion.identity);
+                            bloodFX.SetRandomSprite();
                         }
                     }
                     catch { };
@@ -58,10 +70,12 @@ public class PlayerWeapon : MonoBehaviour
             else
             {
                 Bullet bullet = Instantiate(_bullet, _muzzle.transform.position, _bullet.transform.rotation);
-                bullet.GetComponent<BulletHitDetect>().SetDamage(_weaponInfo.damage);
+                bullet.GetComponent<BulletHitDetect>().SetSettings(_weaponInfo.damage, _weaponInfo.isShootingThrough);
             }
 
             ShootAnimation();
+            SpawnShell();
+            _muzzle.BlowFX();
             --_currentAmmo;
             UpdateEvent?.Invoke(_weaponInfo, _currentAmmo);
 
@@ -72,13 +86,6 @@ public class PlayerWeapon : MonoBehaviour
 
             _rollBackJob = StartCoroutine(RollBack());
         }
-    }
-
-    private IEnumerator RollBack()
-    {
-        _isRollBack = true;
-        yield return new WaitForSeconds(_weaponInfo.rateOfFire);
-        _isRollBack = false;
     }
 
     public void SetNewWeapon(WeaponInfo weaponInfo)
@@ -96,9 +103,21 @@ public class PlayerWeapon : MonoBehaviour
         return _weaponInfo;
     }
 
+    private IEnumerator RollBack()
+    {
+        _isRollBack = true;
+        yield return new WaitForSeconds(_weaponInfo.rateOfFire);
+        _isRollBack = false;
+    }
+
     private void ShootAnimation()
     {
         _animator.Rebind();
         _animator.SetTrigger("Tapped");
+    }
+
+    private void SpawnShell()
+    {
+        Instantiate(_particleShell, transform.position, Quaternion.identity);
     }
 }

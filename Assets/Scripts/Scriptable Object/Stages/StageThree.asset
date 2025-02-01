@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1929647cf030c479d8b3f130d188fe, type: 3}
+  m_Name: StageThree
+  m_EditorClassIdentifier: 
+  _index: 2
+  _number: 3
+  _scoreToUnlock: 1500
+  _weapons: []
+  _enemies:
+  - {fileID: 11400000, guid: dd321144cef9bf2458c1b5c48ac27579, type: 2}
+  - {fileID: 11400000, guid: edf224628eb564549be81005a66f4301, type: 2}
+  - {fileID: 11400000, guid: 330936962c8626440bbf643e8e68a143, type: 2}
+  _enemiesOnChunk: 3
+  _enemyNextSpawnMultiplier: 1.4
+  _weaponsOnChunk: 1
+  _coinPrice: 15
+  _diePenalty: 300

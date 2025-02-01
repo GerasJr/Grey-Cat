@@ -52,11 +52,11 @@ public class CameraMovement : MonoBehaviour
     {
         if(isEnable == true)
         {
-            transform.DOMove(new Vector3(_player.position.x + 1.5f, _player.position.y, -10), _smoothTime);
+            //transform.DOMove(new Vector3(_player.position.x + 1.5f, _player.position.y, -10), _smoothTime);
         }
         else
         {
-            transform.DOMove(new Vector3(_player.position.x, _player.position.y, -10), _smoothTime);
+            //transform.DOMove(new Vector3(_player.position.x, _player.position.y, -10), _smoothTime);
         }
     }
 }

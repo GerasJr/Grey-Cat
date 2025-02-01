@@ -19,7 +19,7 @@ public class WeaponInShop : MonoBehaviour
         _shop = GetComponentInParent<Shop>();
         _button = GetComponentInChildren<Button>();
         _text = GetComponentInChildren<TMP_Text>();
-        _text.text = _weaponInfo.name;
+        _text.text = _weaponInfo.weaponName;
         _button.onClick.AddListener(Visualize);
     }
 

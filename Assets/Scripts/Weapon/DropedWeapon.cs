@@ -4,41 +4,35 @@ public class DropedWeapon : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Vector2 _reboundForce;
+    [SerializeField] private ParticleBlood _particleBlood;
 
-    private UnityEngine.Camera camera;
     private Vector3 _flyDirection = Vector3.right;
     private bool _isHited = false;
     private float _speed = 30f;
+    private float _torqueSpeed = 15f;
+    private float _zRotation = 0;
 
     private void Start()
     {
-        camera = UnityEngine.Camera.main;
         _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    private void Update()
-    {
-        Vector3 viewPos = camera.WorldToViewportPoint(transform.position);
-
-        if(!(viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0))
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void FixedUpdate()
     {
         if(_isHited == false)
         {
+            _zRotation = _zRotation - _torqueSpeed;
+            transform.rotation = Quaternion.Euler(0, 0, _zRotation);
             transform.position += _flyDirection * _speed * Time.fixedDeltaTime;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.TryGetComponent<Enemy>(out Enemy enemy) && _isHited == false)
+        if(collision.TryGetComponent<Enemy>(out Enemy enemy) && enemy.IsDead == false && _isHited == false)
         {
             enemy.GetDamage(100);
+            Instantiate(_particleBlood, collision.ClosestPoint(transform.position), Quaternion.identity);
             _isHited = true;
             Rebound();
         }
@@ -57,5 +51,6 @@ public class DropedWeapon : MonoBehaviour
         PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
         polygonCollider.isTrigger = false;
         rigidbody2D.AddForce(_reboundForce);
+        rigidbody2D.AddTorque(35f);
     }
 }
